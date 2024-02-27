@@ -10,7 +10,7 @@ import java.util.Date;
 @Component
 @Slf4j
 public class JwtTokenProvider {
-    private final String JWT_SECRET = "CDIO3";
+    private final String JWT_SECRET = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9eyJlbWFpbCI6ImZpcnN0QGdtYWlsLmNvbSIsImlhdCI6MTY2NzEzNDIxMiwiZXhwIjoxNjY3MTM2MDEyfQ553rFnl2KMQ0tRLusWY6EExHTGjVSbNPX8VFMSQTlQ";
 
     public String generateToken(CustomUserDetails userDetails) {
         return Jwts.builder()
