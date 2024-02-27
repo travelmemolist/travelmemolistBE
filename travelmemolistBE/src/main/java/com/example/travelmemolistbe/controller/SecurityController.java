@@ -38,5 +38,4 @@ public class SecurityController {
         String test = "hello";
         return ResponseEntity.ok(test);
     }
-
 }
