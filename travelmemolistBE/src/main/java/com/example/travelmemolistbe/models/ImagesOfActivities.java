@@ -1,4 +1,4 @@
-package com.example.travelmemolistbe.Models;
+package com.example.travelmemolistbe.models;
 
 import lombok.Data;
 
