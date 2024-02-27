@@ -9,7 +9,7 @@ import javax.persistence.*;
 public class DayActivities {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idDayActivities;
+    private Long idDayActivities;
     private String nameOfDayActivities;
     @ManyToOne(fetch = FetchType.LAZY)
     private Schedules schedule;

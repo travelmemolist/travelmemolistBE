@@ -1,15 +1,18 @@
 package com.example.travelmemolistbe.models;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
-@Entity
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
 public class ImagesOfActivities {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idImage;
+    private Long idImage;
     private String urlImages;
     @ManyToOne(fetch = FetchType.LAZY)
     private Activities activities;
