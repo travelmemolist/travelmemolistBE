@@ -1,6 +1,6 @@
 package com.example.travelmemolistbe.jwt;
 
-import com.example.travelmemolistbe.service.impl.CustomUserDetails;
+import com.example.travelmemolistbe.service.CustomUserDetails;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -49,5 +49,4 @@ public class JwtTokenProvider {
         }
         return false;
     }
-
 }

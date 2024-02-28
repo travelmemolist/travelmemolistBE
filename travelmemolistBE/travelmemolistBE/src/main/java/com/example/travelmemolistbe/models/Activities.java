@@ -5,16 +5,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class ImagesOfActivities {
+public class Activities {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idImage;
-    private String urlImages;
-    private Boolean isDeleted;
+    private Long activityId;
+    private String activityName;
+    private String description;
     @ManyToOne(fetch = FetchType.LAZY)
-    private Activities activities;
+    private DayActivities dayActivities;
 }

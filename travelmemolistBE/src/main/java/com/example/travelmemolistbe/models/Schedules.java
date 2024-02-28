@@ -21,4 +21,5 @@ public class Schedules {
     private Date endDay;
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+    private Boolean isDeleted;
 }
