@@ -20,7 +20,7 @@ public class SchedulesController {
     private ISchedulesService ischedulesService;
 
     @GetMapping("")
-    public ResponseEntity<Page<Schedules>> findAllSchedules(@RequestParam(value = "title") String title,
+    public ResponseEntity<Page<Schedules>> findAllSchedules(@RequestParam(value = "title",defaultValue = "") String title,
                                                             @RequestParam(value = "userid") String userid,
                                                             @RequestParam(defaultValue = "1") int page) {
         Pageable pageable = PageRequest.of(page - 1, 5);
@@ -29,6 +29,12 @@ public class SchedulesController {
             ResponseEntity<Schedules> responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok().body(pageSchedules);
+    }
+    @PostMapping("/createsschedules")
+    public ResponseEntity<?>createSchedules(@RequestBody Schedules schedules){
+        System.out.println(schedules);
+        ischedulesService.createSchedules(Math.toIntExact(schedules.getSchedulesId()),schedules.getTitle(),schedules.getDescription(),schedules.getAddress(),schedules.getStartDay(),schedules.getEndDay(),schedules.getUser().getUserId());
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
 
