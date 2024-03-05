@@ -19,6 +19,7 @@ public class Schedules {
     private String address;
     private Date startDay;
     private Date endDay;
+    private Boolean isDeleted;
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 }
