@@ -3,7 +3,7 @@ package com.example.travelmemolistbe.controller;
 import com.example.travelmemolistbe.dto.LoginRequest;
 import com.example.travelmemolistbe.dto.LoginResponse;
 import com.example.travelmemolistbe.jwt.JwtTokenProvider;
-import com.example.travelmemolistbe.service.CustomUserDetails;
+import com.example.travelmemolistbe.service.impl.CustomUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;

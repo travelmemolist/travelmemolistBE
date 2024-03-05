@@ -1,7 +1,7 @@
 package com.example.travelmemolistbe.config;
 
 import com.example.travelmemolistbe.jwt.JwtAuthenticationFilter;
-import com.example.travelmemolistbe.service.UserService;
+import com.example.travelmemolistbe.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;

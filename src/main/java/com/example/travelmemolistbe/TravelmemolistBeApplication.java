@@ -17,22 +17,5 @@ public class TravelmemolistBeApplication {
         SpringApplication.run(TravelmemolistBeApplication.class, args);
     }
 
-    @Autowired
-    IUserRepository userRepository;
-    @Autowired
-    PasswordEncoder passwordEncoder;
 
-//    @Override
-//    public void run(String... args) throws Exception {
-//        User user = new User();
-//        user.setUserId(1L);
-//        user.setUsername("phat1");
-//        user.setPassword(passwordEncoder.encode("123"));
-//        user.setAge(20);
-//        user.setEmail("vo@gmail.com");
-//        user.setFirstName("vo");
-//        user.setLastName("phat");
-//        userRepository.save(user);
-//        System.out.println(user);
-//    }
 }
