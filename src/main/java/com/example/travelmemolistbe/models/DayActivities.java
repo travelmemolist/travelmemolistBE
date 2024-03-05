@@ -11,6 +11,7 @@ public class DayActivities {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDayActivities;
     private String nameOfDayActivities;
+    private Boolean isDelete;
     @ManyToOne(fetch = FetchType.LAZY)
     private Schedules schedule;
 }

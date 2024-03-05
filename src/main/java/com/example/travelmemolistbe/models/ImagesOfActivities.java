@@ -14,6 +14,7 @@ public class ImagesOfActivities {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idImage;
     private String urlImages;
+    private Boolean isDelete;
     @ManyToOne(fetch = FetchType.LAZY)
     private Activities activities;
 }
