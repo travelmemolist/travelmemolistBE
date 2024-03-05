@@ -17,9 +17,5 @@ public class TravelmemolistBeApplication {
         SpringApplication.run(TravelmemolistBeApplication.class, args);
     }
 
-    @Autowired
-    IUserRepository userRepository;
-    @Autowired
-    PasswordEncoder passwordEncoder;
 
 }
