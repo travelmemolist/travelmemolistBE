@@ -14,7 +14,7 @@ public class DayActivities {
     private String nameOfDayActivities;
     private Date currentDay;
     private String day;
-    private Boolean isDelete;
+    private Boolean isDeleted;
     @ManyToOne(fetch = FetchType.LAZY)
     private Schedules schedule;
 }
