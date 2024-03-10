@@ -17,9 +17,6 @@ public class Activities {
     private String activityName;
     private String description;
     private Boolean isDeleted;
-    private String startTime;
-    private String endTime;
-    private Boolean stateActive;
     @ManyToOne(fetch = FetchType.LAZY)
     private DayActivities dayActivities;
 }
