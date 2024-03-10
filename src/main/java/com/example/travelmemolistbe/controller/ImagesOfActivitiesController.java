@@ -1,5 +1,7 @@
 package com.example.travelmemolistbe.controller;
 
+import com.example.travelmemolistbe.dto.CreateImage;
+import com.example.travelmemolistbe.models.Activities;
 import com.example.travelmemolistbe.models.ImagesOfActivities;
 import com.example.travelmemolistbe.service.impl.ImageOfActivitiesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +22,15 @@ public class ImagesOfActivitiesController {
         return new ResponseEntity<>(imagesOfActivities,HttpStatus.OK);
     }
     @PostMapping("create_images")
-    public ResponseEntity<?>saveImages(@RequestBody ImagesOfActivities imagesOfActivities){
-        imageOfActivitiesService.createImage(imagesOfActivities);
+    public ResponseEntity<?>saveImages(@RequestBody CreateImage imagesOfActivities){
+        ImagesOfActivities imagesOfActivitiesDTO = new ImagesOfActivities();
+        imagesOfActivitiesDTO.setIsDeleted(false);
+        imagesOfActivitiesDTO.setUrlImages(imagesOfActivities.getUrlImages());
+        imagesOfActivitiesDTO.setIdImage(imagesOfActivities.getIdImage());
+        Activities activitiesDTO = new Activities();
+        activitiesDTO.setActivityId(imagesOfActivities.getActivities());
+        imagesOfActivitiesDTO.setActivities(activitiesDTO);
+        imageOfActivitiesService.createImage(imagesOfActivitiesDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
