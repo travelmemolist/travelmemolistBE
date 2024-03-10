@@ -1,6 +1,10 @@
 package com.example.travelmemolistbe.controller;
 
+import com.example.travelmemolistbe.dto.CreateSchdules;
+import com.example.travelmemolistbe.models.DayActivities;
 import com.example.travelmemolistbe.models.Schedules;
+import com.example.travelmemolistbe.models.User;
+import com.example.travelmemolistbe.service.IDayOfActivitiesService;
 import com.example.travelmemolistbe.service.ISchedulesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,12 +16,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("api/v1/schedules")
 public class SchedulesController {
     @Autowired
     private ISchedulesService ischedulesService;
+    @Autowired
+    private IDayOfActivitiesService iDayOfActivitiesService;
 
     @GetMapping("")
     public ResponseEntity<Page<Schedules>> findAllSchedules(@RequestParam(value = "title",defaultValue = "") String title,
@@ -30,12 +37,30 @@ public class SchedulesController {
         }
         return ResponseEntity.ok().body(pageSchedules);
     }
-    @PostMapping("/createsschedules")
-    public ResponseEntity<?>createSchedules(@RequestBody Schedules schedules){
-        System.out.println(schedules);
-        ischedulesService.createSchedules(Math.toIntExact(schedules.getSchedulesId()),schedules.getTitle(),schedules.getDescription(),schedules.getAddress(),schedules.getStartDay(),schedules.getEndDay(),schedules.getUser().getUserId());
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    @PostMapping("/create-schedules")
+    public ResponseEntity<?>createSchedules(@RequestBody CreateSchdules request){
+        Schedules s = new Schedules();
+        s.setTitle(request.getTitle());
+        s.setDescription(request.getDescription());
+        s.setAddress(request.getAddress());
+        s.setStartDay(request.getStartDay());
+        s.setEndDay(request.getEndDay());
+        s.setIsDeleted(false);
+        s.setStatus(false);
+        User user = new User();
+        user.setUserId(request.getUserId());
+        s.setUser(user);
+       Schedules scheduleID = ischedulesService.createSchedules(s);
+        return new ResponseEntity<>(scheduleID,HttpStatus.CREATED);
     }
-
-
+    @GetMapping("{id}")
+    public ResponseEntity<List<DayActivities>> getListDayActivitiesByScheduleId(@PathVariable("id") String id) {
+        List<DayActivities> dayActivities = iDayOfActivitiesService.listActivities(id);
+        return new ResponseEntity<>(dayActivities,HttpStatus.OK);
+    }
+    @PutMapping("{id}")
+    public ResponseEntity<?> updateStatus(@PathVariable("id") String id){
+        ischedulesService.updateStatus(id);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
 }

@@ -14,6 +14,7 @@ public class AccountService implements IAccountService {
     IUserRepository userRepository;
     @Autowired
     PasswordEncoder passwordEncoder;
+
     @Override
     public User findAccountByUsername(String username) {
         return userRepository.findUserByUsername(username);
@@ -34,6 +35,4 @@ public class AccountService implements IAccountService {
     public AccountInfoDTO getAccountByUsername(String username) {
         return userRepository.getUserByUsername(username);
     }
-
-
 }

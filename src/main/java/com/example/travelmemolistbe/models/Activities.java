@@ -1,8 +1,10 @@
 package com.example.travelmemolistbe.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 
@@ -17,6 +19,9 @@ public class Activities {
     private String activityName;
     private String description;
     private Boolean isDeleted;
-    @ManyToOne(fetch = FetchType.LAZY)
+    private String startTime;
+    private String endTime;
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JsonIgnore
     private DayActivities dayActivities;
 }
