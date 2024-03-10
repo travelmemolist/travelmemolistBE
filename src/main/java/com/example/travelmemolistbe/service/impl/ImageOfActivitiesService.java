@@ -21,4 +21,9 @@ public class ImageOfActivitiesService implements IImageOfActivitiesService {
     public List<ImagesOfActivities> getAllImage(String activityID) {
         return iImageOfActivitiesRepository.findAllByActivityId(activityID);
     }
+
+    @Override
+    public List<ImagesOfActivities> getAllImageBySchedules(String schedulesId) {
+        return iImageOfActivitiesRepository.findAllBySchedulesID(schedulesId);
+    }
 }

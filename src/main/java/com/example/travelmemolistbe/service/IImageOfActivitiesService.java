@@ -10,4 +10,6 @@ import java.util.List;
 public interface IImageOfActivitiesService {
     void createImage(ImagesOfActivities iImageOfActivities);
     List<ImagesOfActivities> getAllImage(String activityID);
+    List<ImagesOfActivities> getAllImageBySchedules(String schedulesId);
+
 }
