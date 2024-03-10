@@ -1,5 +1,6 @@
 package com.example.travelmemolistbe.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -16,5 +17,6 @@ public class DayActivities {
     private String day;
     private Boolean isDeleted;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Schedules schedule;
 }

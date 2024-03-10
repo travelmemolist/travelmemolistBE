@@ -1,5 +1,6 @@
 package com.example.travelmemolistbe.service.impl;
 
+import com.example.travelmemolistbe.dto.CreateSchdules;
 import com.example.travelmemolistbe.models.Schedules;
 import com.example.travelmemolistbe.repository.IDayActiviesRepository;
 import com.example.travelmemolistbe.repository.ISchedulesRepository;
@@ -26,21 +27,31 @@ public class SchedulesService implements ISchedulesService {
     }
 
     @Override
-    public void createSchedules(Integer id,String title, String description, String address, Date startDay, Date endDay, Long userId) {
+    public Schedules createSchedules(Schedules schedules) {
         String day = "Ngày ";
-        ichedulesRepository.createSchedule(title, description, address, startDay, endDay, userId);
-        Long totalDayHasBeenCreater = caculateDay(startDay,endDay);
+//        Schedules schedules = ichedulesRepository.createSchedule(title, description, address, startDay, endDay, userId);
+//        ichedulesRepository.createSchedule(schedules.getTitle(),schedules.getDescription(),schedules.getAddress(),schedules.getStartDay(),schedules.getEndDay(),schedules.getUserId());
+        Schedules s = ichedulesRepository.save(schedules);
+        Long totalDayHasBeenCreater = caculateDay(s.getStartDay(),s.getEndDay());
         for (int i = 1; i <= totalDayHasBeenCreater; i++) {
-            iDayActiviesRepository.createDayAtivities(startDay,day + i,"",id);
-            long timeByMiliSecond = startDay.getTime();
+            iDayActiviesRepository.createDayAtivities(s.getStartDay(),day + i,"",s.getSchedulesId());
+            long timeByMiliSecond = s.getStartDay().getTime();
             timeByMiliSecond += 1 * 24 * 60 * 60 * 1000;
-            startDay.setTime(timeByMiliSecond);
+            schedules.getStartDay().setTime(timeByMiliSecond);
         }
+        return s;
     }
+
+
 
     @Override
     public Long caculateDay(Date startDay, Date endDay) {
         return Duration.between(startDay.toInstant(), endDay.toInstant()).toDays();
+    }
+
+    @Override
+    public void updateStatus(String schedulesID) {
+        ichedulesRepository.updateStatusSchedules(schedulesID);
     }
 
 

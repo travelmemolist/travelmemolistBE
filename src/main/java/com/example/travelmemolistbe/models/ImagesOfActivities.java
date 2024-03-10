@@ -1,5 +1,6 @@
 package com.example.travelmemolistbe.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,5 +17,6 @@ public class ImagesOfActivities {
     private String urlImages;
     private Boolean isDeleted;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnore
     private Activities activities;
 }
