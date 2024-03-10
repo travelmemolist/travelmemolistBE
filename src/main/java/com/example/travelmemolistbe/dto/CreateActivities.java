@@ -16,5 +16,5 @@ public class CreateActivities {
     private String description;
     private String startTime;
     private String endTime;
-    private Long iDDayActivities;
+    private Long dayActivityId;
 }

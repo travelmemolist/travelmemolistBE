@@ -30,7 +30,7 @@ public class ActivitiesController {
         activity.setEndTime(activityDTO.getEndTime());
         activity.setIsDeleted(false);
         DayActivities dayActivities = new DayActivities();
-        dayActivities.setIdDayActivities(activityDTO.getIDDayActivities());
+        dayActivities.setIdDayActivities(activityDTO.getDayActivityId());
         activity.setDayActivities(dayActivities);
         iActivitiesService.saveActivities(activity);
         return new ResponseEntity<>(HttpStatus.CREATED);

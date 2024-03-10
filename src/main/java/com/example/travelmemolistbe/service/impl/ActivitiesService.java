@@ -14,7 +14,7 @@ public class ActivitiesService implements IActivitiesService {
     private IActivitiesRepository iActivitiesRepository;
     @Override
     public void saveActivities(Activities activities) {
-        iActivitiesRepository.save(activities);
+        iActivitiesRepository.createActivities(activities.getActivityName(),activities.getEndTime(),activities.getStartTime(),activities.getDayActivities().getIdDayActivities());
     }
 
     @Override
