@@ -20,6 +20,7 @@ public class Schedules {
     private String address;
     private Date startDay;
     private Date endDay;
+
     private Boolean status;
     private Boolean isDeleted;
     @ManyToOne(fetch = FetchType.LAZY)

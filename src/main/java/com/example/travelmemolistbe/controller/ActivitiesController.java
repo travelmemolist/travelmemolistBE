@@ -4,14 +4,12 @@ import com.example.travelmemolistbe.dto.CreateActivities;
 import com.example.travelmemolistbe.models.Activities;
 import com.example.travelmemolistbe.models.DayActivities;
 import com.example.travelmemolistbe.service.IActivitiesService;
-import com.example.travelmemolistbe.service.IDayOfActivitiesService;
-import com.example.travelmemolistbe.service.ISchedulesService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
