@@ -17,9 +17,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Locale;
 
 @RestController
-@RequestMapping("api/v1/schedules")
+@RequestMapping("api/schedules")
 public class SchedulesController {
     @Autowired
     private ISchedulesService ischedulesService;

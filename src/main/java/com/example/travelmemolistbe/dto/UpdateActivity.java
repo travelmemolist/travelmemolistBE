@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CreateImage {
-    private String urlImages;
-    private Long activities;
+public class UpdateActivity {
+    String activityName;
+    String description;
+    String endTime;
+    String startTime;
 }

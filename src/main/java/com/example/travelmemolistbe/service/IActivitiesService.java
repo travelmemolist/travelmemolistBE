@@ -11,4 +11,7 @@ import java.util.List;
 public interface IActivitiesService {
     void saveActivities(Activities activities);
     List<Activities> findAllActivitiesByDayActivities(int idDayActivities);
+
+    void updateActivities(String activityName,String description,String endTime,String startTime,String activityId);
+    void deleteActivities(String id);
 }

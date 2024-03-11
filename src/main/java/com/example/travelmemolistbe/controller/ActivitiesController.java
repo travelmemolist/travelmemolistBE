@@ -1,11 +1,13 @@
 package com.example.travelmemolistbe.controller;
 
 import com.example.travelmemolistbe.dto.CreateActivities;
+import com.example.travelmemolistbe.dto.UpdateActivity;
 import com.example.travelmemolistbe.models.Activities;
 import com.example.travelmemolistbe.models.DayActivities;
 import com.example.travelmemolistbe.service.IActivitiesService;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/activities")
+@RequestMapping("api/activities")
 public class ActivitiesController {
     @Autowired
     private IActivitiesService  iActivitiesService;
@@ -38,7 +40,16 @@ public class ActivitiesController {
         List<Activities> listActivities = iActivitiesService.findAllActivitiesByDayActivities(idDayActivities);
         return new ResponseEntity<>(listActivities, HttpStatus.OK);
     }
-
+    @PutMapping("{id}")
+    public ResponseEntity<?> updateActivity(@Param("id")String id,@RequestBody UpdateActivity updateActivity){
+        iActivitiesService.updateActivities(updateActivity.getActivityName(),updateActivity.getDescription(),updateActivity.getEndTime(), updateActivity.getStartTime(),id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+    @DeleteMapping("{id}")
+    public ResponseEntity< ? > deleteActivity(@Param("id") String id) {
+        iActivitiesService.deleteActivities(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 
 }

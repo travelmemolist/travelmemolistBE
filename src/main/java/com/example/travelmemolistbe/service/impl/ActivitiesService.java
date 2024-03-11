@@ -22,5 +22,15 @@ public class ActivitiesService implements IActivitiesService {
         return iActivitiesRepository.findAllActivitiesByDayActivities(idDayActivities);
     }
 
+    @Override
+    public void updateActivities(String activityName, String description, String endTime, String startTime, String activityId) {
+        iActivitiesRepository.updateActivity(activityName, description, endTime, startTime, activityId);
+    }
+
+    @Override
+    public void deleteActivities(String id) {
+        iActivitiesRepository.deleteActivity(id);
+    }
+
 
 }

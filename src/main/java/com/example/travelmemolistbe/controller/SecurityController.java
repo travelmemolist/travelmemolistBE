@@ -62,7 +62,7 @@ public class SecurityController {
             LoginResponse loginResponse = new LoginResponse(jwt, accountInfoDTO);
             return new ResponseEntity<>(new ResponseStatusDTO<>(200, "Đăng nhập thành công", loginResponse), HttpStatus.OK);
         } catch (AuthenticationException e) {
-            return new ResponseEntity<>(new ResponseStatusDTO<>(401, "Đăng nhập thất bại", null), HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>(new ResponseStatusDTO<>(401, "Tài khoản hoặc mật khẩu không đúng!", null), HttpStatus.UNAUTHORIZED);
         }
     }
     @GetMapping("/test")

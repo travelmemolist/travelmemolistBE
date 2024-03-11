@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/images")
+@RequestMapping("api/images")
 public class ImagesOfActivitiesController {
     @Autowired
     private ImageOfActivitiesService imageOfActivitiesService;
@@ -26,7 +26,6 @@ public class ImagesOfActivitiesController {
         ImagesOfActivities imagesOfActivitiesDTO = new ImagesOfActivities();
         imagesOfActivitiesDTO.setIsDeleted(false);
         imagesOfActivitiesDTO.setUrlImages(imagesOfActivities.getUrlImages());
-        imagesOfActivitiesDTO.setIdImage(imagesOfActivities.getIdImage());
         Activities activitiesDTO = new Activities();
         activitiesDTO.setActivityId(imagesOfActivities.getActivities());
         imagesOfActivitiesDTO.setActivities(activitiesDTO);
