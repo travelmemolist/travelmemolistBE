@@ -6,6 +6,7 @@ import com.example.travelmemolistbe.models.Schedules;
 import com.example.travelmemolistbe.models.User;
 import com.example.travelmemolistbe.service.IDayOfActivitiesService;
 import com.example.travelmemolistbe.service.ISchedulesService;
+import com.example.travelmemolistbe.service.impl.SchedulesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -26,6 +27,8 @@ public class SchedulesController {
     private ISchedulesService ischedulesService;
     @Autowired
     private IDayOfActivitiesService iDayOfActivitiesService;
+    @Autowired
+    private SchedulesService schedulesService;
 
     @GetMapping("")
     public ResponseEntity<Page<Schedules>> findAllSchedules(@RequestParam(value = "title",defaultValue = "") String title,
@@ -63,5 +66,10 @@ public class SchedulesController {
     public ResponseEntity<?> updateStatus(@PathVariable("id") String id){
         ischedulesService.updateStatus(id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
+    }
+
+    @GetMapping("/test/{scheduleId}")
+    public List<DayActivities> getDayActivitiesByScheduleId(@PathVariable Long scheduleId) {
+        return schedulesService.getDayActivitiesByScheduleId(scheduleId);
     }
 }

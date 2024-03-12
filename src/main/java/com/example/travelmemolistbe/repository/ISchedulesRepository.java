@@ -1,5 +1,7 @@
 package com.example.travelmemolistbe.repository;
 
+import com.example.travelmemolistbe.models.Activities;
+import com.example.travelmemolistbe.models.DayActivities;
 import com.example.travelmemolistbe.models.Schedules;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 @Repository
 public interface ISchedulesRepository extends JpaRepository<Schedules, Long> {
@@ -25,4 +28,6 @@ public interface ISchedulesRepository extends JpaRepository<Schedules, Long> {
 
     @Query(value = "update Schedules set status = true where schedules_id = ?1",nativeQuery = true)
     void updateStatusSchedules(String schedules_id);
+
+
 }

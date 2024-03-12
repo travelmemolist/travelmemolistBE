@@ -1,6 +1,6 @@
 package com.example.travelmemolistbe.service.impl;
 
-import com.example.travelmemolistbe.dto.CreateSchdules;
+import com.example.travelmemolistbe.models.DayActivities;
 import com.example.travelmemolistbe.models.Schedules;
 import com.example.travelmemolistbe.repository.IDayActiviesRepository;
 import com.example.travelmemolistbe.repository.ISchedulesRepository;
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class SchedulesService implements ISchedulesService {
@@ -52,6 +53,10 @@ public class SchedulesService implements ISchedulesService {
     @Override
     public void updateStatus(String schedulesID) {
         ichedulesRepository.updateStatusSchedules(schedulesID);
+    }
+
+    public List<DayActivities> getDayActivitiesByScheduleId(Long scheduleId) {
+        return iDayActiviesRepository.findByScheduleSchedulesId(scheduleId);
     }
 
 

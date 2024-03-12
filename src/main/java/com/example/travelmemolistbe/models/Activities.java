@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -22,6 +23,8 @@ public class Activities {
     private String startTime;
     private String endTime;
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_day_activities",referencedColumnName = "idDayActivities")
     @JsonIgnore
     private DayActivities dayActivities;
+
 }
