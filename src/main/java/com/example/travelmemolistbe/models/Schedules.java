@@ -1,5 +1,6 @@
 package com.example.travelmemolistbe.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,7 +30,7 @@ public class Schedules {
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private User user;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "schedule")
     private List<DayActivities> dayActivities;
 

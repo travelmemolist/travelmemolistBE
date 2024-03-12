@@ -16,8 +16,8 @@ import java.util.List;
 public class ImagesOfActivitiesController {
     @Autowired
     private ImageOfActivitiesService imageOfActivitiesService;
-    @GetMapping("{id}")
-    public ResponseEntity<List<ImagesOfActivities>> getAllListImages(String id){
+    @GetMapping("/{id}")
+    public ResponseEntity<List<ImagesOfActivities>> getAllListImages(@PathVariable("id") String id){
         List<ImagesOfActivities> imagesOfActivities = imageOfActivitiesService.getAllImage(id);
         return new ResponseEntity<>(imagesOfActivities,HttpStatus.OK);
     }

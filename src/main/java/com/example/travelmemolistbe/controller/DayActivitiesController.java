@@ -14,13 +14,11 @@ public class DayActivitiesController {
     @Autowired
     private DayOfActivitiesService dayOfActivitiesService;
 
-    @PutMapping("/{id}")
-    private ResponseEntity <?> updateNameOfDayActivities(@PathVariable("id")String idDayActivities, @RequestBody UpdateNameDayActivities dayActivities){
-        System.out.println(idDayActivities);
-        System.out.println(dayActivities);
-        DayActivities dayActivitiesDTO = new DayActivities();
-              dayActivitiesDTO.setNameOfDayActivities(dayActivities.getNameDayActivities());
-            dayOfActivitiesService.updateName(idDayActivities,dayActivitiesDTO.getNameOfDayActivities());
-            return new ResponseEntity<>(HttpStatus.OK);
+    @PutMapping("/update")
+    private ResponseEntity<?> updateNameOfDayActivities(@RequestBody UpdateNameDayActivities request) {
+        String activitiesId = request.getActivitiesId();
+        String activitiesName = request.getNameDayActivities();
+        dayOfActivitiesService.updateName(activitiesName, activitiesId);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -22,8 +22,8 @@ public class SchedulesService implements ISchedulesService {
     private IDayActiviesRepository iDayActiviesRepository;
 
     @Override
-    public Page<Schedules> findAllSchedulesByUserId(Pageable page, String id,String titleSchedules) {
-        Page<Schedules> findAllSchedulesByUserId = ichedulesRepository.selectAllSchedules(page,id,titleSchedules);
+    public Page<Schedules> findAllSchedulesByUserId(Pageable page, Long id,String titleSchedules) {
+        Page<Schedules> findAllSchedulesByUserId = ichedulesRepository.selectAllSchedules(id,titleSchedules,page);
         return findAllSchedulesByUserId;
     }
 
@@ -55,9 +55,8 @@ public class SchedulesService implements ISchedulesService {
         ichedulesRepository.updateStatusSchedules(schedulesID);
     }
 
+    @Override
     public List<DayActivities> getDayActivitiesByScheduleId(Long scheduleId) {
         return iDayActiviesRepository.findByScheduleSchedulesId(scheduleId);
     }
-
-
 }

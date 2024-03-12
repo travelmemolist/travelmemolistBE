@@ -11,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,8 +21,7 @@ import java.util.Locale;
 @RestController
 @RequestMapping("api/schedules")
 public class SchedulesController {
-    @Autowired
-    private ISchedulesService ischedulesService;
+
     @Autowired
     private IDayOfActivitiesService iDayOfActivitiesService;
     @Autowired
@@ -32,12 +29,12 @@ public class SchedulesController {
 
     @GetMapping("")
     public ResponseEntity<Page<Schedules>> findAllSchedules(@RequestParam(value = "title",defaultValue = "") String title,
-                                                            @RequestParam(value = "userid") String userid,
-                                                            @RequestParam(defaultValue = "1") int page) {
-        Pageable pageable = PageRequest.of(page - 1, 5);
-        Page<Schedules> pageSchedules = ischedulesService.findAllSchedulesByUserId(pageable, userid, title);
+                                                            @RequestParam(value = "userid") Long userid,
+                                                            @RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page , 5);
+        Page<Schedules> pageSchedules = schedulesService.findAllSchedulesByUserId(pageable, userid, title);
         if (pageSchedules.getContent() == null) {
-            ResponseEntity<Schedules> responseEntity = new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return ResponseEntity.ok().body(pageSchedules);
     }
@@ -54,7 +51,7 @@ public class SchedulesController {
         User user = new User();
         user.setUserId(request.getUserId());
         s.setUser(user);
-       Schedules scheduleID = ischedulesService.createSchedules(s);
+       Schedules scheduleID = schedulesService.createSchedules(s);
         return new ResponseEntity<>(scheduleID,HttpStatus.CREATED);
     }
     @GetMapping("{id}")
@@ -64,11 +61,11 @@ public class SchedulesController {
     }
     @PutMapping("{id}")
     public ResponseEntity<?> updateStatus(@PathVariable("id") String id){
-        ischedulesService.updateStatus(id);
+        schedulesService.updateStatus(id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 
-    @GetMapping("/test/{scheduleId}")
+    @GetMapping("/get-day-activities/{scheduleId}")
     public List<DayActivities> getDayActivitiesByScheduleId(@PathVariable Long scheduleId) {
         return schedulesService.getDayActivitiesByScheduleId(scheduleId);
     }

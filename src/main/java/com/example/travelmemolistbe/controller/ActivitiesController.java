@@ -40,13 +40,19 @@ public class ActivitiesController {
         List<Activities> listActivities = iActivitiesService.findAllActivitiesByDayActivities(idDayActivities);
         return new ResponseEntity<>(listActivities, HttpStatus.OK);
     }
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<Activities> getActivityById(@PathVariable("id") Long id){
+        Activities activities = iActivitiesService.findActivityById(id);
+        return new ResponseEntity<>(activities,HttpStatus.OK);
+    }
+
     @PutMapping("{id}")
-    public ResponseEntity<?> updateActivity(@Param("id")String id,@RequestBody UpdateActivity updateActivity){
+    public ResponseEntity<?> updateActivity(@PathVariable("id")String id,@RequestBody UpdateActivity updateActivity){
         iActivitiesService.updateActivities(updateActivity.getActivityName(),updateActivity.getDescription(),updateActivity.getEndTime(), updateActivity.getStartTime(),id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
     @DeleteMapping("{id}")
-    public ResponseEntity< ? > deleteActivity(@Param("id") String id) {
+    public ResponseEntity< ? > deleteActivity(@PathVariable ("id") String id) {
         iActivitiesService.deleteActivities(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }

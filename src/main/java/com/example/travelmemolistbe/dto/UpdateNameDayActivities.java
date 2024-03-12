@@ -8,5 +8,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UpdateNameDayActivities {
+    private String activitiesId;
     private String nameDayActivities;
 }

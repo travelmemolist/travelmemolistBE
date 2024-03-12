@@ -18,6 +18,11 @@ public class ActivitiesService implements IActivitiesService {
     }
 
     @Override
+    public Activities findActivityById(Long activityId) {
+        return iActivitiesRepository.findActivitiesByActivityId(activityId);
+    }
+
+    @Override
     public List<Activities> findAllActivitiesByDayActivities(int idDayActivities) {
         return iActivitiesRepository.findAllActivitiesByDayActivities(idDayActivities);
     }
