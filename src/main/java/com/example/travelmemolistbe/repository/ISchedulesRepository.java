@@ -23,4 +23,6 @@ public interface ISchedulesRepository extends JpaRepository<Schedules, Long> {
     @Query(value = "SELECT s FROM Schedules s WHERE s.user.userId = :userId AND s.isDeleted = false AND s.status = false AND s.title LIKE %:title%")
     Page<Schedules> selectAllSchedules(@Param("userId") Long userId, @Param("title") String title, Pageable pageable);
 
+    @Query(value = "SELECT s FROM Schedules s WHERE s.user.userId = :userId AND s.isDeleted = false AND s.status = true AND s.title LIKE %:title%")
+    Page<Schedules> selectAllCompletedSchedules(@Param("userId") Long userId, @Param("title") String title, Pageable pageable);
 }
