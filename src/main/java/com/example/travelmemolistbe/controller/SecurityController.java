@@ -5,7 +5,6 @@ import com.example.travelmemolistbe.dto.LoginRequest;
 import com.example.travelmemolistbe.dto.LoginResponse;
 import com.example.travelmemolistbe.dto.ResponseStatusDTO;
 import com.example.travelmemolistbe.jwt.JwtTokenProvider;
-import com.example.travelmemolistbe.models.Activities;
 import com.example.travelmemolistbe.models.User;
 import com.example.travelmemolistbe.repository.IUserRepository;
 import com.example.travelmemolistbe.service.impl.AccountService;
@@ -55,12 +54,6 @@ public class SecurityController {
         }
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<String> test() {
-        String test = "hello";
-        return ResponseEntity.ok(test);
-    }
-
     @PostMapping("/register")
     public ResponseEntity<ResponseStatusDTO> createAccount(@RequestBody User user) {
         User user1 = userRepository.findUserByUsername(user.getUsername());
@@ -76,4 +69,6 @@ public class SecurityController {
         accountService.createUser(user);
         return new ResponseEntity<>(new ResponseStatusDTO(200, "Tạo tài khoảng thành công", ""), HttpStatus.OK);
     }
+
+
 }
