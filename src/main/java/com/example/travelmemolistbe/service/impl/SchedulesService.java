@@ -27,6 +27,12 @@ public class SchedulesService implements ISchedulesService {
     }
 
     @Override
+    public Page<Schedules> findAllCompletedSchedules(Pageable page, Long id, String titleSchedules) {
+        Page<Schedules> findAllCompletedSchedules = ichedulesRepository.selectAllCompletedSchedules(id,titleSchedules,page);
+        return findAllCompletedSchedules;
+    }
+
+    @Override
     public Schedules createSchedules(Schedules schedules) {
         String day = "Ngày ";
         Schedules s = ichedulesRepository.save(schedules);

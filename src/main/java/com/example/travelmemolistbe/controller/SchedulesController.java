@@ -37,6 +37,17 @@ public class SchedulesController {
         }
         return ResponseEntity.ok().body(pageSchedules);
     }
+    @GetMapping("completed_schedules")
+    public ResponseEntity<Page<Schedules>> findAllConpletedSchedules(@RequestParam(value = "title",defaultValue = "") String title,
+                                                            @RequestParam(value = "userid") Long userid,
+                                                            @RequestParam(defaultValue = "0") int page) {
+        Pageable pageable = PageRequest.of(page , 5);
+        Page<Schedules> pageSchedules = schedulesService.findAllCompletedSchedules(pageable, userid, title);
+        if (pageSchedules.getContent() == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return ResponseEntity.ok().body(pageSchedules);
+    }
     @PostMapping("/create-schedules")
     public ResponseEntity<?>createSchedules(@RequestBody CreateSchdules request){
         Schedules s = new Schedules();

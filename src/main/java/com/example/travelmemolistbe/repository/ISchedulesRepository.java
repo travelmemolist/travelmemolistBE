@@ -17,10 +17,12 @@ public interface ISchedulesRepository extends JpaRepository<Schedules, Long> {
 //    Page<Schedules> selectAllSchedules(Pageable pageable, @Param("userId") String userId, @Param("title") String titleSchedules);
 
 
-    @Query(value = "update Schedules set status = true where schedules_id = ?1", nativeQuery = true)
+    @Query(value = "update Schedules set status = true where schedules_id = ?1 and Schedules.status = false", nativeQuery = true)
     void updateStatusSchedules(String schedules_id);
 
     @Query(value = "SELECT s FROM Schedules s WHERE s.user.userId = :userId AND s.isDeleted = false AND s.status = false AND s.title LIKE %:title%")
     Page<Schedules> selectAllSchedules(@Param("userId") Long userId, @Param("title") String title, Pageable pageable);
+    @Query(value = "SELECT s FROM Schedules s WHERE s.user.userId = :userId AND s.isDeleted = false AND s.status = true AND s.title LIKE %:title%")
+    Page<Schedules> selectAllCompletedSchedules(@Param("userId") Long userId, @Param("title") String title, Pageable pageable);
 
 }

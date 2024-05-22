@@ -13,6 +13,7 @@ import java.util.List;
 @Service
 public interface ISchedulesService {
     Page<Schedules> findAllSchedulesByUserId(Pageable page,Long id,String titleSchedules);
+    Page<Schedules> findAllCompletedSchedules(Pageable page,Long id,String titleSchedules);
     Schedules createSchedules(Schedules s);
 //    String title, String description, String address, Date startDay, Date endDay, Long user_user_id
     Long caculateDay(Date startDay, Date endDay);
