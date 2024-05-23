@@ -37,11 +37,13 @@ public class SchedulesService implements ISchedulesService {
         String day = "Ngày ";
         Schedules s = ichedulesRepository.save(schedules);
         Long totalDayHasBeenCreater = caculateDay(s.getStartDay(),s.getEndDay());
+        Date date = new Date();
+        date.setTime(s.getStartDay().getTime());
         for (int i = 1; i <= totalDayHasBeenCreater; i++) {
-            iDayActiviesRepository.createDayAtivities(s.getStartDay(),day + i,"",s.getSchedulesId());
-            long timeByMiliSecond = s.getStartDay().getTime();
+            iDayActiviesRepository.createDayAtivities(date,day + i,"",s.getSchedulesId());
+            long timeByMiliSecond = date.getTime();
             timeByMiliSecond += 1 * 24 * 60 * 60 * 1000;
-            schedules.getStartDay().setTime(timeByMiliSecond);
+            date.setTime(timeByMiliSecond);
         }
         return s;
     }

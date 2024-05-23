@@ -38,8 +38,8 @@ public class SchedulesController {
         }
         return ResponseEntity.ok().body(pageSchedules);
     }
-    @GetMapping("completed_schedules")
-    public ResponseEntity<Page<Schedules>> findAllConpletedSchedules(@RequestParam(value = "title",defaultValue = "") String title,
+    @GetMapping("/completed_schedules")
+    public ResponseEntity<Page<Schedules>> findAllCompleteSchedules(@RequestParam(value = "title",defaultValue = "") String title,
                                                             @RequestParam(value = "userid") Long userid,
                                                             @RequestParam(defaultValue = "0") int page) {
         Pageable pageable = PageRequest.of(page , 5);
