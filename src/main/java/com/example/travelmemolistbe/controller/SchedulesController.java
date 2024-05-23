@@ -4,6 +4,7 @@ import com.example.travelmemolistbe.dto.CreateSchdules;
 import com.example.travelmemolistbe.models.DayActivities;
 import com.example.travelmemolistbe.models.Schedules;
 import com.example.travelmemolistbe.models.User;
+import com.example.travelmemolistbe.repository.ISchedulesRepository;
 import com.example.travelmemolistbe.service.IDayOfActivitiesService;
 import com.example.travelmemolistbe.service.impl.SchedulesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,16 +16,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Locale;
 
 @RestController
 @RequestMapping("api/schedules")
 public class SchedulesController {
-
     @Autowired
     private IDayOfActivitiesService iDayOfActivitiesService;
     @Autowired
     private SchedulesService schedulesService;
+    @Autowired
+    private ISchedulesRepository schedulesRepository;
 
     @GetMapping("")
     public ResponseEntity<Page<Schedules>> findAllSchedules(@RequestParam(value = "title",defaultValue = "") String title,
@@ -74,9 +75,14 @@ public class SchedulesController {
         schedulesService.updateStatus(id);
         return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
-
     @GetMapping("/get-day-activities/{scheduleId}")
     public List<DayActivities> getDayActivitiesByScheduleId(@PathVariable Long scheduleId) {
         return schedulesService.getDayActivitiesByScheduleId(scheduleId);
+    }
+
+    @GetMapping("/get_by_id/{id}")
+    public ResponseEntity<?> getScheduleById(@PathVariable("id") Long id) {
+        Schedules schedule = schedulesRepository.findBySchedulesId(id);
+        return new ResponseEntity<>(schedule,HttpStatus.OK);
     }
 }

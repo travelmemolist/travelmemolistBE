@@ -7,7 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -30,6 +29,7 @@ public class Schedules {
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
     private User user;
+
     @JsonBackReference
     @OneToMany(mappedBy = "schedule")
     private List<DayActivities> dayActivities;
