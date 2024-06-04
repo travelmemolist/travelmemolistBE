@@ -9,7 +9,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/travelmemolist_v3?createDatabaseIfNotExist=true
     username: root
-    password: tin123
+    password: 17062003
   jpa:
     hibernate:
       ddl-auto: update

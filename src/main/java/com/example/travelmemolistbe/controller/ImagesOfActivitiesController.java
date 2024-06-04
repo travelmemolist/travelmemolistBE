@@ -34,6 +34,7 @@ public class ImagesOfActivitiesController {
     }
     @GetMapping("/image_schedule/{id}")
     public ResponseEntity<List<ImagesOfActivities>>getAllImagesBySchedules(@PathVariable("id")String schedulesID){
+
         List<ImagesOfActivities> imagesOfActivities = imageOfActivitiesService.getAllImageBySchedules(schedulesID);
         return new ResponseEntity<>(imagesOfActivities,HttpStatus.OK);
     }
